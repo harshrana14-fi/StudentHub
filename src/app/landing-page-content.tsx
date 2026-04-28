@@ -45,46 +45,46 @@ export default function LandingPage() {
       {/* Hero Section */}
       <div className="relative overflow-hidden border-b-4 border-black">
         <div className="absolute inset-0 bg-gradient-to-br from-amber-200 via-slate-200 to-stone-200 opacity-50"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16 md:pt-20 md:pb-24">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Content */}
             <div className="text-left">
               {/* Logo/Title */}
-              <div className="mb-6">
-                <div className="inline-block bg-black text-white px-8 py-5 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,0.3)]">
-                  <h1 className="text-6xl md:text-7xl lg:text-8xl font-black tracking-tight leading-none">
-                    StudentHub
+              <div className="mb-4 md:mb-6">
+                <div className="inline-block bg-black text-white px-4 py-3 md:px-8 md:py-5 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,0.3)]">
+                  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight leading-none">
+                    StudHub
                   </h1>
                 </div>
               </div>
 
-              <p className="text-3xl md:text-4xl lg:text-5xl text-black mb-6 font-black leading-tight">
+              <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-black mb-4 md:mb-6 font-black leading-tight">
                 Your Complete
                 <br />
                 <span className="text-amber-600">College Companion</span>
-                <GraduationCap className="inline w-10 h-10 ml-2" />
+                <GraduationCap className="inline w-8 h-8 md:w-10 md:h-10 ml-2" />
               </p>
               
-              <p className="text-lg md:text-xl text-gray-800 mb-8 font-medium bg-white border-4 border-black p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] max-w-2xl">
+              <p className="text-base md:text-lg lg:text-xl text-gray-800 mb-6 md:mb-8 font-medium bg-white border-4 border-black p-4 md:p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] max-w-2xl">
                 AI-powered tools designed to simplify your academic journey. From lab records to exam prep,
                 we've got everything you need to excel in college.
               </p>
               
-              <div className="flex gap-4 flex-wrap">
+              <div className="flex gap-3 md:gap-4 flex-wrap">
                 <Link
                   href="/tools/lab-record-generator"
-                  className="btn-primary text-lg flex items-center gap-2"
+                  className="btn-primary text-base md:text-lg flex items-center gap-2"
                 >
-                  <Rocket className="w-5 h-5" /> Explore Tools
+                  <Rocket className="w-4 h-4 md:w-5 md:h-5" /> Explore Tools
                 </Link>
-                <button className="btn-pink text-lg flex items-center gap-2">
-                  <BookOpen className="w-5 h-5" /> Learn More
+                <button className="btn-pink text-base md:text-lg flex items-center gap-2">
+                  <BookOpen className="w-4 h-4 md:w-5 md:h-5" /> Learn More
                 </button>
               </div>
             </div>
 
             {/* Right Content - Stats */}
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-4 md:gap-6">
               {[
                 { number: '6+', label: 'Tools Available', color: 'bg-amber-200' },
                 { number: '100%', label: 'Free to Use', color: 'bg-slate-200' },
@@ -93,10 +93,10 @@ export default function LandingPage() {
               ].map((stat, index) => (
                 <div
                   key={index}
-                  className={`${stat.color} border-4 border-black p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[3px] hover:translate-y-[3px] transition-all`}
+                  className={`${stat.color} border-4 border-black p-4 md:p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[3px] hover:translate-y-[3px] transition-all`}
                 >
-                  <div className="text-5xl font-black text-black">{stat.number}</div>
-                  <div className="text-black font-bold mt-2 text-lg">{stat.label}</div>
+                  <div className="text-3xl md:text-5xl font-black text-black">{stat.number}</div>
+                  <div className="text-black font-bold mt-2 text-sm md:text-lg">{stat.label}</div>
                 </div>
               ))}
             </div>

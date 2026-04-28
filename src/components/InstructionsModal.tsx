@@ -13,41 +13,41 @@ export default function InstructionsModal({ isOpen, onClose }: InstructionsModal
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-      <div className="bg-white border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+      <div className="bg-white border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] max-w-3xl w-full max-h-[85vh] overflow-y-auto">
         {/* Header */}
-        <div className="bg-gradient-to-r from-amber-300 to-amber-400 border-b-4 border-black p-6 flex justify-between items-center sticky top-0 z-10">
-          <div className="flex items-center gap-3">
-            <Lightbulb className="w-8 h-8" />
-            <h2 className="text-3xl font-black text-black">How to Use Lab Record Generator</h2>
+        <div className="bg-gradient-to-r from-amber-300 to-amber-400 border-b-4 border-black p-4 md:p-6 flex justify-between items-center sticky top-0 z-10">
+          <div className="flex items-center gap-2 md:gap-3">
+            <Lightbulb className="w-6 h-6 md:w-8 md:h-8" />
+            <h2 className="text-xl md:text-3xl font-black text-black">How to Use</h2>
           </div>
           <button
             onClick={onClose}
             className="p-2 bg-white border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5 md:w-6 md:h-6" />
           </button>
         </div>
 
         {/* Content */}
-        <div className="p-8 space-y-8">
+        <div className="p-4 md:p-8 space-y-6 md:space-y-8">
           {/* Getting Started */}
           <div>
-            <h3 className="text-2xl font-black text-black mb-4 flex items-center gap-2">
-              <FileText className="w-6 h-6" /> Getting Started
+            <h3 className="text-lg md:text-2xl font-black text-black mb-3 md:mb-4 flex items-center gap-2">
+              <FileText className="w-5 h-5 md:w-6 md:h-6" /> Getting Started
             </h3>
-            <div className="bg-amber-50 border-4 border-black p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-              <ul className="space-y-3">
+            <div className="bg-amber-50 border-4 border-black p-4 md:p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              <ul className="space-y-2 md:space-y-3">
                 <li className="flex items-start gap-3">
-                  <span className="text-amber-600 font-bold text-lg">1.</span>
-                  <span className="text-gray-800 font-medium">Enter your <strong>Experiment Title</strong> (e.g., "Develop an analog clock using applet")</span>
+                  <span className="text-amber-600 font-bold">1.</span>
+                  <span className="text-gray-800 text-sm md:text-base font-medium">Enter your <strong>Experiment Title</strong> (e.g., "Develop an analog clock using applet")</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-amber-600 font-bold text-lg">2.</span>
-                  <span className="text-gray-800 font-medium">Select your <strong>Subject</strong> from the dropdown (e.g., Java Programming, Python, C++, etc.)</span>
+                  <span className="text-amber-600 font-bold">2.</span>
+                  <span className="text-gray-800 text-sm md:text-base font-medium">Select your <strong>Subject</strong> from the dropdown</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-amber-600 font-bold text-lg">3.</span>
-                  <span className="text-gray-800 font-medium">Click <strong>"Generate Lab Record"</strong> and wait for AI to create your complete lab record</span>
+                  <span className="text-amber-600 font-bold">3.</span>
+                  <span className="text-gray-800 text-sm md:text-base font-medium">Click <strong>"Generate Lab Record"</strong> and wait for AI</span>
                 </li>
               </ul>
             </div>
@@ -55,18 +55,18 @@ export default function InstructionsModal({ isOpen, onClose }: InstructionsModal
 
           {/* Pro Tips */}
           <div>
-            <h3 className="text-2xl font-black text-black mb-4 flex items-center gap-2">
-              <AlertCircle className="w-6 h-6" /> Pro Tips for Better Results
+            <h3 className="text-lg md:text-2xl font-black text-black mb-3 md:mb-4 flex items-center gap-2">
+              <AlertCircle className="w-5 h-5 md:w-6 md:h-6" /> Pro Tips
             </h3>
-            <div className="space-y-4">
+            <div className="space-y-3 md:space-y-4">
               {/* Tip 1 */}
-              <div className="bg-blue-50 border-4 border-black p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                <h4 className="text-lg font-black text-black mb-3">💻 Specify Programming Language</h4>
-                <p className="text-gray-800 font-medium mb-2">
-                  Include the programming language in your experiment title for accurate code generation:
+              <div className="bg-blue-50 border-4 border-black p-4 md:p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                <h4 className="text-base md:text-lg font-black text-black mb-2 md:mb-3">💻 Specify Programming Language</h4>
+                <p className="text-gray-800 text-sm md:text-base font-medium mb-2">
+                  Include the language in your title:
                 </p>
-                <div className="bg-white border-2 border-black p-4 rounded">
-                  <p className="text-sm font-mono text-gray-700">
+                <div className="bg-white border-2 border-black p-3 md:p-4 rounded">
+                  <p className="text-xs md:text-sm font-mono text-gray-700">
                     ✅ "Implement stack operations using C++"<br/>
                     ✅ "Create a binary search tree in Python"<br/>
                     ✅ "Develop sorting algorithms in Java"<br/>
@@ -76,16 +76,16 @@ export default function InstructionsModal({ isOpen, onClose }: InstructionsModal
               </div>
 
               {/* Tip 2 */}
-              <div className="bg-green-50 border-4 border-black p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                <h4 className="text-lg font-black text-black mb-3">📝 Customize Content Requirements</h4>
-                <p className="text-gray-800 font-medium mb-2">
-                  Add specific instructions in the experiment title to customize your lab record:
+              <div className="bg-green-50 border-4 border-black p-4 md:p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                <h4 className="text-base md:text-lg font-black text-black mb-2 md:mb-3">📝 Customize Content</h4>
+                <p className="text-gray-800 text-sm md:text-base font-medium mb-2">
+                  Add instructions to customize your lab record:
                 </p>
-                <div className="bg-white border-2 border-black p-4 rounded space-y-2">
-                  <p className="text-sm text-gray-700">
+                <div className="bg-white border-2 border-black p-3 md:p-4 rounded space-y-2">
+                  <p className="text-xs md:text-sm text-gray-700">
                     <strong>Examples:</strong>
                   </p>
-                  <p className="text-sm font-mono text-gray-700">
+                  <p className="text-xs md:text-sm font-mono text-gray-700">
                     ✅ "Theory only - No algorithm needed"<br/>
                     ✅ "Generate AI code with detailed comments"<br/>
                     ✅ "Include learning outcomes and viva voce only"<br/>
@@ -96,13 +96,13 @@ export default function InstructionsModal({ isOpen, onClose }: InstructionsModal
               </div>
 
               {/* Tip 3 */}
-              <div className="bg-purple-50 border-4 border-black p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                <h4 className="text-lg font-black text-black mb-3">🎯 Be Specific About Topics</h4>
-                <p className="text-gray-800 font-medium mb-2">
+              <div className="bg-purple-50 border-4 border-black p-4 md:p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                <h4 className="text-base md:text-lg font-black text-black mb-2 md:mb-3">🎯 Be Specific</h4>
+                <p className="text-gray-800 text-sm md:text-base font-medium mb-2">
                   More specific titles generate better results:
                 </p>
-                <div className="bg-white border-2 border-black p-4 rounded">
-                  <p className="text-sm font-mono text-gray-700">
+                <div className="bg-white border-2 border-black p-3 md:p-4 rounded">
+                  <p className="text-xs md:text-sm font-mono text-gray-700">
                     ❌ "Sorting program"<br/>
                     ✅ "Implement bubble sort and merge sort with time complexity analysis in C"<br/><br/>
                     ❌ "Database experiment"<br/>
@@ -112,10 +112,10 @@ export default function InstructionsModal({ isOpen, onClose }: InstructionsModal
               </div>
 
               {/* Tip 4 */}
-              <div className="bg-orange-50 border-4 border-black p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                <h4 className="text-lg font-black text-black mb-3">📊 Graph & Visual Output</h4>
-                <p className="text-gray-800 font-medium">
-                  The AI automatically detects if your experiment needs graphs or generates visual output (like GUI applications, applets, or graphics). For experiments like "analog clock using applet", it will mark it as having visual output.
+              <div className="bg-orange-50 border-4 border-black p-4 md:p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                <h4 className="text-base md:text-lg font-black text-black mb-2 md:mb-3">📊 Graph & Visual Output</h4>
+                <p className="text-gray-800 text-sm md:text-base font-medium">
+                  AI automatically detects if your experiment needs graphs or generates visual output (GUI, applets, graphics).
                 </p>
               </div>
             </div>
@@ -123,33 +123,31 @@ export default function InstructionsModal({ isOpen, onClose }: InstructionsModal
 
           {/* What You Get */}
           <div>
-            <h3 className="text-2xl font-black text-black mb-4 flex items-center gap-2">
-              <CheckCircle className="w-6 h-6" /> What You'll Receive
+            <h3 className="text-lg md:text-2xl font-black text-black mb-3 md:mb-4 flex items-center gap-2">
+              <CheckCircle className="w-5 h-5 md:w-6 md:h-6" /> What You'll Get
             </h3>
-            <div className="bg-emerald-50 border-4 border-black p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="bg-white border-2 border-black p-4">
-                  <h4 className="font-bold text-black mb-2 flex items-center gap-2">
-                    <BookOpen className="w-5 h-5" /> Content
+            <div className="bg-emerald-50 border-4 border-black p-4 md:p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              <div className="grid md:grid-cols-2 gap-3 md:gap-4">
+                <div className="bg-white border-2 border-black p-3 md:p-4">
+                  <h4 className="font-bold text-black mb-2 flex items-center gap-2 text-sm md:text-base">
+                    <BookOpen className="w-4 h-4 md:w-5 md:h-5" /> Content
                   </h4>
-                  <ul className="text-sm text-gray-700 space-y-1">
-                    <li>• Aim of the experiment</li>
-                    <li>• Detailed theory explanation</li>
-                    <li>• Step-by-step algorithm</li>
+                  <ul className="text-xs md:text-sm text-gray-700 space-y-1">
+                    <li>• Aim, Theory, Algorithm</li>
                     <li>• Complete source code</li>
                     <li>• Expected output</li>
+                    <li>• Graphs (if needed)</li>
                   </ul>
                 </div>
-                <div className="bg-white border-2 border-black p-4">
-                  <h4 className="font-bold text-black mb-2 flex items-center gap-2">
-                    <Code className="w-5 h-5" /> Additional Features
+                <div className="bg-white border-2 border-black p-3 md:p-4">
+                  <h4 className="font-bold text-black mb-2 flex items-center gap-2 text-sm md:text-base">
+                    <Code className="w-4 h-4 md:w-5 md:h-5" /> Features
                   </h4>
-                  <ul className="text-sm text-gray-700 space-y-1">
-                    <li>• Graph visualization (if applicable)</li>
-                    <li>• Visual output display (for GUI/Graphics)</li>
+                  <ul className="text-xs md:text-sm text-gray-700 space-y-1">
+                    <li>• Visual output display</li>
                     <li>• 5+ Learning outcomes</li>
-                    <li>• 5+ Viva questions with answers</li>
-                    <li>• Downloadable DOCX file</li>
+                    <li>• 5+ Viva Q&As</li>
+                    <li>• Downloadable DOCX</li>
                   </ul>
                 </div>
               </div>
@@ -158,40 +156,30 @@ export default function InstructionsModal({ isOpen, onClose }: InstructionsModal
 
           {/* Important Notes */}
           <div>
-            <h3 className="text-2xl font-black text-black mb-4 flex items-center gap-2">
-              <Lightbulb className="w-6 h-6" /> Important Notes
+            <h3 className="text-lg md:text-2xl font-black text-black mb-3 md:mb-4 flex items-center gap-2">
+              <Lightbulb className="w-5 h-5 md:w-6 md:h-6" /> Important Notes
             </h3>
-            <div className="bg-red-50 border-4 border-black p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-              <ul className="space-y-3">
+            <div className="bg-red-50 border-4 border-black p-4 md:p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              <ul className="space-y-2 md:space-y-3">
                 <li className="flex items-start gap-3">
-                  <span className="text-red-600 font-bold">⚠️</span>
-                  <span className="text-gray-800 font-medium">Always review and verify the generated content before submitting</span>
+                  <span className="text-red-600 font-bold text-sm">⚠️</span>
+                  <span className="text-gray-800 text-sm md:text-base font-medium">Review generated content before submitting</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-red-600 font-bold">⚠️</span>
-                  <span className="text-gray-800 font-medium">You can edit any section by clicking the "Edit" button in the preview</span>
+                  <span className="text-red-600 font-bold text-sm">⚠️</span>
+                  <span className="text-gray-800 text-sm md:text-base font-medium">Edit any section by clicking "Edit" button</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-red-600 font-bold">⚠️</span>
-                  <span className="text-gray-800 font-medium">Use "Regenerate" if you're not satisfied with the results</span>
+                  <span className="text-red-600 font-bold text-sm">⚠️</span>
+                  <span className="text-gray-800 text-sm md:text-base font-medium">Use "Regenerate" if not satisfied</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-red-600 font-bold">⚠️</span>
-                  <span className="text-gray-800 font-medium">Run the code yourself to verify it works as expected</span>
+                  <span className="text-red-600 font-bold text-sm">⚠️</span>
+                  <span className="text-gray-800 text-sm md:text-base font-medium">Run the code to verify it works</span>
                 </li>
               </ul>
             </div>
           </div>
-        </div>
-
-        {/* Footer */}
-        <div className="border-t-4 border-black bg-gradient-to-r from-amber-200 to-amber-300 p-6 flex justify-end sticky bottom-0">
-          <button
-            onClick={onClose}
-            className="px-8 py-4 bg-black text-white font-black border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all text-lg"
-          >
-            GOT IT, LET'S START! →
-          </button>
         </div>
       </div>
     </div>
