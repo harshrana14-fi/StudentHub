@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply text-black antialiased;
+    font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  /* Neo-Brutalist Button */
+  .btn-primary {
+    @apply px-6 py-3 bg-amber-300 text-black font-bold rounded-none border-4 border-black
+           shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]
+           hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 bg-white text-black font-bold rounded-none border-4 border-black
+           shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]
+           hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200;
+  }
+
+  .btn-pink {
+    @apply px-6 py-3 bg-slate-300 text-black font-bold rounded-none border-4 border-black
+           shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]
+           hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200;
+  }
+
+  .btn-blue {
+    @apply px-6 py-3 bg-stone-300 text-black font-bold rounded-none border-4 border-black
+           shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]
+           hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200;
+  }
+
+  /* Neo-Brutalist Input */
+  .input-field {
+    @apply w-full px-4 py-3 border-4 border-black rounded-none bg-white
+           focus:outline-none focus:ring-0 focus:border-black focus:bg-yellow-50
+           transition-all duration-200 font-medium;
+  }
+
+  .select-field {
+    @apply w-full px-4 py-3 border-4 border-black rounded-none bg-white
+           focus:outline-none focus:ring-0 focus:border-black focus:bg-yellow-50
+           transition-all duration-200 font-medium;
+  }
+
+  /* Neo-Brutalist Card */
+  .card {
+    @apply bg-white border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-6;
+  }
+
+  .card-colored {
+    @apply border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-6;
+  }
+
+  /* Neo-Brutalist Section */
+  .section-heading {
+    @apply text-2xl font-black text-black mb-4 pb-2 border-b-4 border-black;
+  }
+
+  /* Neo-Brutalist Badge */
+  .badge {
+    @apply inline-block px-3 py-1 font-bold border-2 border-black text-sm;
+  }
+
+  .badge-yellow {
+    @apply bg-amber-300 text-black;
+  }
+
+  .badge-pink {
+    @apply bg-slate-300 text-black;
+  }
+
+  .badge-blue {
+    @apply bg-stone-300 text-black;
+  }
+
+  .badge-green {
+    @apply bg-emerald-300 text-black;
+  }
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes wiggle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-2deg);
+  }
+  75% {
+    transform: rotate(2deg);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-wiggle {
+  animation: wiggle 1s ease-in-out infinite;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-left: 2px solid black;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4a574;
+  border: 2px solid black;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8b7355;
+}
