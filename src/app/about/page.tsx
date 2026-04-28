@@ -18,7 +18,7 @@ export default function AboutPage() {
           <div className="text-left">
             <div className="inline-block bg-black text-white px-8 py-5 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,0.3)] mb-6">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-none">
-                About StudentHub
+                About StudHub
               </h1>
             </div>
             
@@ -42,7 +42,7 @@ export default function AboutPage() {
                 Harsh Rana
               </h2>
               <p className="text-base text-gray-800 mb-4 font-medium">
-                StudentHub is a passion project built to help students navigate their academic journey with ease. 
+                StudHub is a passion project built to help students navigate their academic journey with ease. 
                 As a student myself, I understand the challenges of managing lab records, assignments, and exam preparation.
               </p>
               <p className="text-base text-gray-800 mb-6 font-medium">
@@ -185,10 +185,10 @@ export default function AboutPage() {
             </p>
           </div>
           <Link
-            href="/tools/lab-record-generator"
+            href="/tools"
             className="inline-block px-12 py-6 bg-black text-white font-black border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,0.3)] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)] hover:translate-x-[4px] hover:translate-y-[4px] transition-all text-xl"
           >
-            TRY THE LAB RECORD GENERATOR →
+            EXPLORE TOOLS →
           </Link>
         </div>
       </div>

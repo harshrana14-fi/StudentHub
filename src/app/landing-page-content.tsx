@@ -183,7 +183,7 @@ export default function LandingPage() {
           </h2>
           <div className="bg-white border-4 border-black p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mb-8">
             <p className="text-xl font-bold text-black">
-              Join thousands of students who are already using StudentHub to excel in their academics
+              Join thousands of students who are already using StudHub to excel in their academics
             </p>
           </div>
           <Link

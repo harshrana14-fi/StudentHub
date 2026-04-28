@@ -27,7 +27,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <div className="flex items-baseline gap-0.5">
-              <span className="text-2xl font-black text-black">Stu</span>
+              <span className="text-2xl font-black text-black">Stud</span>
               <span className="text-2xl font-black text-amber-600">Hub</span>
               <span className="text-2xl font-black text-black">.</span>
             </div>

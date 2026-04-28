@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import { Zap, FileText, BookOpen, CheckCircle } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'StudentHub - Your Complete College Companion',
+  title: 'StudHub - Your Complete College Companion',
   description: 'AI-powered tools designed to simplify your academic journey. From lab records to exam prep, we have everything you need to excel in college.',
 };
 
