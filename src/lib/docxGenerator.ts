@@ -93,32 +93,36 @@ export async function generateDocx(
               })
           ),
 
-          // Algorithm Section
-          new Paragraph({
-            children: [
-              new TextRun({
-                text: 'Algorithm',
-                bold: true,
-                size: 28,
-                font: 'Calibri',
-              }),
-            ],
-            heading: HeadingLevel.HEADING_2,
-            spacing: { before: 300, after: 200 },
-          }),
-          ...labRecord.algorithm.map(
-            (step, index) =>
-              new Paragraph({
-                children: [
-                  new TextRun({
-                    text: `${index + 1}. ${step}`,
-                    size: 24,
-                    font: 'Calibri',
-                  }),
-                ],
-                spacing: { after: 120 },
-              })
-          ),
+          // Algorithm Section (only if algorithm steps exist)
+          ...(labRecord.algorithm && labRecord.algorithm.length > 0
+            ? [
+                new Paragraph({
+                  children: [
+                    new TextRun({
+                      text: 'Algorithm',
+                      bold: true,
+                      size: 28,
+                      font: 'Calibri',
+                    }),
+                  ],
+                  heading: HeadingLevel.HEADING_2,
+                  spacing: { before: 300, after: 200 },
+                }),
+                ...labRecord.algorithm.map(
+                  (step, index) =>
+                    new Paragraph({
+                      children: [
+                        new TextRun({
+                          text: `${index + 1}. ${step}`,
+                          size: 24,
+                          font: 'Calibri',
+                        }),
+                      ],
+                      spacing: { after: 120 },
+                    })
+                ),
+              ]
+            : []),
 
           // Code Section
           new Paragraph({

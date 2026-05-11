@@ -1,36 +1,37 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { generateLabRecord } from '@/lib/groq';
-import { GenerateRequest } from '@/types';
 
 export async function POST(request: NextRequest) {
   try {
-    const body: GenerateRequest = await request.json();
+    const body = await request.json();
+    const { imageData, mode } = body;
 
-    // Validate request body
-    if (!body.experimentTitle || !body.subject) {
+    if (!imageData) {
       return NextResponse.json(
         {
           success: false,
-          error: 'Experiment title and subject are required',
+          error: 'Image data is required',
         },
         { status: 400 }
       );
     }
 
-    // Generate lab record using Groq API
-    const labRecord = await generateLabRecord(
-      body.experimentTitle,
-      body.subject,
-      body.includeTheory,
-      body.includeAlgorithm
-    );
+    // TODO: Implement OCR processing
+    // Options:
+    // 1. Use Tesseract.js on client-side (simpler, no server needed)
+    // 2. Use Groq API with vision-capable model (requires API key)
+    // 3. Use dedicated OCR service like Google Vision API
 
+    // For now, return a placeholder response
     return NextResponse.json({
       success: true,
-      data: labRecord,
+      message: 'OCR processing will be implemented',
+      data: {
+        subjects: [],
+        grades: [],
+      },
     });
   } catch (error) {
-    console.error('Generate API Error:', error);
+    console.error('OCR API Error:', error);
 
     if (error instanceof Error) {
       return NextResponse.json(

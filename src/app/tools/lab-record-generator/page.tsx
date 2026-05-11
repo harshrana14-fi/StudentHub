@@ -17,13 +17,17 @@ export default function LandingPage() {
   const [error, setError] = useState<string | null>(null);
   const [experimentTitle, setExperimentTitle] = useState('');
   const [subject, setSubject] = useState('');
+  const [includeTheory, setIncludeTheory] = useState(true);
+  const [includeAlgorithm, setIncludeAlgorithm] = useState(true);
   const [showInstructions, setShowInstructions] = useState(false);
 
-  const handleGenerate = async (title: string, subj: string) => {
+  const handleGenerate = async (title: string, subj: string, theory: boolean, algorithm: boolean) => {
     setIsLoading(true);
     setError(null);
     setExperimentTitle(title);
     setSubject(subj);
+    setIncludeTheory(theory);
+    setIncludeAlgorithm(algorithm);
 
     try {
       const response = await fetch('/api/generate', {
@@ -34,6 +38,8 @@ export default function LandingPage() {
         body: JSON.stringify({
           experimentTitle: title,
           subject: subj,
+          includeTheory: theory,
+          includeAlgorithm: algorithm,
         }),
       });
 
@@ -138,7 +144,7 @@ export default function LandingPage() {
 
   const handleRegenerate = () => {
     if (experimentTitle && subject) {
-      handleGenerate(experimentTitle, subject);
+      handleGenerate(experimentTitle, subject, includeTheory, includeAlgorithm);
     }
   };
 

@@ -273,22 +273,24 @@ export default function LabRecordPreview({
         </div>
 
         {/* Algorithm */}
-        <div className="border-b-2 border-gray-200 pb-6">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-            <span className="w-2 h-8 bg-gray-600 rounded"></span>
-            Algorithm
-          </h2>
-          <div className="ml-4 space-y-2">
-            {labRecord.algorithm.map((step, index) => (
-              <div key={index} className="flex gap-3 items-start">
-                <span className="flex-shrink-0 w-8 h-8 bg-gray-200 text-gray-700 rounded-full flex items-center justify-center font-bold text-sm">
-                  {index + 1}
-                </span>
-                <p className="text-gray-800 flex-1 leading-relaxed pt-1">{step}</p>
-              </div>
-            ))}
+        {labRecord.algorithm && labRecord.algorithm.length > 0 && (
+          <div className="border-b-2 border-gray-200 pb-6">
+            <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span className="w-2 h-8 bg-gray-600 rounded"></span>
+              Algorithm
+            </h2>
+            <div className="ml-4 space-y-2">
+              {labRecord.algorithm.map((step, index) => (
+                <div key={index} className="flex gap-3 items-start">
+                  <span className="flex-shrink-0 w-8 h-8 bg-gray-200 text-gray-700 rounded-full flex items-center justify-center font-bold text-sm">
+                    {index + 1}
+                  </span>
+                  <p className="text-gray-800 flex-1 leading-relaxed pt-1">{step}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Code */}
         <div className="border-b-2 border-gray-200 pb-6">

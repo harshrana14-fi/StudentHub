@@ -11,7 +11,6 @@ import {
   Sparkles,
   Wrench
 } from 'lucide-react';
-
 export default function ToolsPage() {
   const tools = [
     {
@@ -30,11 +29,22 @@ export default function ToolsPage() {
       title: 'CGPA Calculator',
       description: 'Calculate your Cumulative Grade Point Average easily. Input your semester grades and credits to track your academic performance.',
       icon: BookOpen,
-      status: 'coming-soon',
-      features: ['Semester-wise Calculation', 'Grade Tracking', 'Performance Analytics'],
-      bgColor: 'bg-gray-200',
-      borderColor: 'border-gray-400',
-      link: '#',
+      status: 'active',
+      features: ['Branch & Semester Selection', 'Manual Grade Entry', 'Upload Result (Coming Soon)', 'CGPA Tracking'],
+      bgColor: 'bg-emerald-200',
+      borderColor: 'border-black',
+      link: '/tools/cgpa-calculator',
+    },
+    {
+      id: 'pdf-editor',
+      title: 'Advanced PDF Editor',
+      description: 'A comprehensive PDF tool to edit, annotate, merge, split, and manipulate your PDF documents with ease.',
+      icon: FileCheck,
+      status: 'active',
+      features: ['Edit Text & Images', 'Merge & Split', 'Page Manipulation', 'Secure & Private'],
+      bgColor: 'bg-indigo-200',
+      borderColor: 'border-black',
+      link: '/tools/pdf-editor',
     },
   ];
 

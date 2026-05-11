@@ -40,11 +40,14 @@ IMPORTANT REQUIREMENTS:
 - vivaQuestions MUST have AT LEAST 5 Q&A pairs
 - code should be properly formatted with line breaks (\\n) for each line
 - Make content practical and educational
-- Ensure all fields are present`;
+- Ensure all fields are present
+- Follow user preferences for theory detail level and algorithm inclusion specified in the user prompt`;
 
 export async function generateLabRecord(
   experimentTitle: string,
-  subject: string
+  subject: string,
+  includeTheory: boolean = true,
+  includeAlgorithm: boolean = true
 ): Promise<LabRecord> {
   const apiKey = process.env.GROQ_API_KEY;
 
@@ -52,7 +55,22 @@ export async function generateLabRecord(
     throw new Error('GROQ_API_KEY is not configured');
   }
 
-  const userPrompt = `Generate a complete lab record for the experiment: "${experimentTitle}" in ${subject} subject. Make content practical for engineering students.`;
+  // Build user prompt based on preferences
+  let userPrompt = `Generate a complete lab record for the experiment: "${experimentTitle}" in ${subject} subject.`;
+  
+  if (includeTheory) {
+    userPrompt += ' Include DETAILED and comprehensive theory section.';
+  } else {
+    userPrompt += ' Keep the theory section brief and concise.';
+  }
+  
+  if (includeAlgorithm) {
+    userPrompt += ' Include a detailed step-by-step algorithm.';
+  } else {
+    userPrompt += ' Do not include the algorithm section.';
+  }
+  
+  userPrompt += ' Make content practical for engineering students.';
 
   try {
     const response = await fetch(GROQ_API_URL, {
@@ -103,13 +121,17 @@ export async function generateLabRecord(
     if (
       !labRecord.aim ||
       !labRecord.theory ||
-      !labRecord.algorithm ||
       !labRecord.code ||
       !labRecord.output ||
       !labRecord.learningOutcomes ||
       !labRecord.vivaQuestions
     ) {
       throw new Error('Incomplete lab record data received from AI');
+    }
+    
+    // If algorithm is not included, set it to empty array
+    if (!includeAlgorithm && !labRecord.algorithm) {
+      labRecord.algorithm = [];
     }
 
     return labRecord;
