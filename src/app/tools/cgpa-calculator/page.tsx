@@ -167,51 +167,80 @@ export default function CGPACalculatorPage() {
     }
   };
 
-  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
     setIsProcessing(true);
     setOcrProgress(0);
-    const reader = new FileReader();
-    reader.onload = async (event) => {
-      const imageData = event.target?.result as string;
+    setUploadedImage(null);
+    setExtractedData(null);
+
+    try {
+      let imageData: string = '';
+
+      if (file.type === 'application/pdf') {
+        // Handle PDF
+        const pdfjs = await import('pdfjs-dist');
+        pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+        
+        const arrayBuffer = await file.arrayBuffer();
+        const pdf = await pdfjs.getDocument({ data: arrayBuffer }).promise;
+        const page = await pdf.getPage(1); // Process the first page
+        
+        const viewport = page.getViewport({ scale: 2.0 }); // Higher scale for better OCR
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        if (context) {
+          await page.render({ canvasContext: context, viewport }).promise;
+          imageData = canvas.toDataURL('image/png');
+        } else {
+          throw new Error('Could not create canvas context');
+        }
+      } else {
+        // Handle Image
+        imageData = await new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onload = (event) => resolve(event.target?.result as string);
+          reader.readAsDataURL(file);
+        });
+      }
+
       setUploadedImage(imageData);
 
-      try {
-        // Perform OCR using Tesseract.js
-        const result = await recognize(imageData, 'eng', {
-          logger: (m: { progress?: number; status?: string }) => {
-            if (m.progress) {
-              setOcrProgress(Math.round(m.progress * 100));
-            }
+      // Perform OCR using Tesseract.js
+      const result = await recognize(imageData, 'eng', {
+        logger: (m: { progress?: number; status?: string }) => {
+          if (m.progress) {
+            setOcrProgress(Math.round(m.progress * 100));
           }
-        });
-
-        const extractedText = result.data.text;
-        console.log('Extracted text:', extractedText);
-
-        // Parse the extracted text to find subjects and grades
-        const parsedSubjects = parseResultText(extractedText);
-        
-        if (parsedSubjects.length > 0) {
-          setExtractedData(parsedSubjects);
-          setSubjects(parsedSubjects);
-          alert(`Successfully extracted ${parsedSubjects.length} subjects! Please verify and edit if needed.`);
-        } else {
-          // Show the extracted text to help debug
-          console.log('Full extracted text for debugging:', extractedText);
-          alert(`Could not automatically extract subjects.\n\nExtracted text (first 200 chars):\n${extractedText.substring(0, 200)}...\n\nPlease enter them manually or try a clearer image.`);
         }
-      } catch (error) {
-        console.error('OCR Error:', error);
-        alert('OCR processing failed. Please try again or enter grades manually.');
-      } finally {
-        setIsProcessing(false);
-        setOcrProgress(0);
+      });
+
+      const extractedText = result.data.text;
+      console.log('Extracted text:', extractedText);
+
+      // Parse the extracted text to find subjects and grades
+      const parsedSubjects = parseResultText(extractedText);
+      
+      if (parsedSubjects.length > 0) {
+        setExtractedData(parsedSubjects);
+        setSubjects(parsedSubjects);
+        alert(`Successfully extracted ${parsedSubjects.length} subjects! Please verify and edit if needed.`);
+      } else {
+        console.log('Full extracted text for debugging:', extractedText);
+        alert(`Could not automatically extract subjects.\n\nExtracted text (first 200 chars):\n${extractedText.substring(0, 200)}...\n\nPlease enter them manually or try a clearer image.`);
       }
-    };
-    reader.readAsDataURL(file);
+    } catch (error) {
+      console.error('File Processing Error:', error);
+      alert('Processing failed. Please try again or enter grades manually.');
+    } finally {
+      setIsProcessing(false);
+      setOcrProgress(0);
+    }
   };
 
   // Function to parse result card text and extract subjects/marks
@@ -427,17 +456,17 @@ export default function CGPACalculatorPage() {
                 Upload Your Result Card
               </h3>
               <p className="text-gray-600 mb-6">
-                Upload a screenshot of your semester result to automatically extract marks
+                Upload a screenshot or PDF of your semester result to automatically extract marks
               </p>
               <label className="inline-block px-6 py-3 bg-primary-600 text-white font-bold border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all cursor-pointer">
                 <Upload className="w-5 h-5 inline mr-2" />
-                Upload Result Image
+                Upload Image or PDF
                 <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImageUpload}
-                  className="hidden"
-                  disabled={isProcessing}
+                   type="file"
+                   accept="image/*,application/pdf"
+                   onChange={handleFileUpload}
+                   className="hidden"
+                   disabled={isProcessing}
                 />
               </label>
                 
