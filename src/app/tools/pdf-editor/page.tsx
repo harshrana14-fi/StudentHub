@@ -395,6 +395,7 @@ export default function PDFEditorPage() {
           });
 
           for (const ann of sortedAnnotations) {
+            // No padding/border offsets needed - wrappers have no layout-affecting borders or padding
             const vX = ann.x * scale;
             const vY = ann.y * scale;
             const vWidth = ann.width * scale;
@@ -406,13 +407,13 @@ export default function PDFEditorPage() {
               pdfY = cropY + height - vY;
             } else if (originalRotation === 90) {
               pdfX = cropX + vY;
-              pdfY = cropY + vX;
+              pdfY = cropY + height - vX;
             } else if (originalRotation === 180) {
               pdfX = cropX + width - vX;
               pdfY = cropY + vY;
             } else if (originalRotation === 270) {
               pdfX = cropX + width - vY;
-              pdfY = cropY + height - vX;
+              pdfY = cropY + vX;
             } else {
               pdfX = cropX + vX;
               pdfY = cropY + height - vY;
@@ -512,7 +513,6 @@ export default function PDFEditorPage() {
                 y: rectY,
                 width: rW,
                 height: rH,
-                rotate: degrees(-originalRotation),
               });
             }
           }
@@ -749,11 +749,12 @@ export default function PDFEditorPage() {
                     </button>
                   </div>
 
-                  <div 
-                    ref={pageContainerRef}
-                    className={`bg-white border-4 border-black shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] p-0 relative cursor-${activeTool === 'text' ? 'crosshair' : 'default'}`}
-                    onClick={handlePageClick}
-                  >
+                  <div className="bg-white border-4 border-black shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] p-0 relative">
+                    <div 
+                      ref={pageContainerRef}
+                      className={`relative cursor-${activeTool === 'text' ? 'crosshair' : 'default'}`}
+                      onClick={handlePageClick}
+                    >
                     <AnimatePresence mode="wait">
                       {currentPageData && currentSourceFile && (
                         <motion.div
@@ -866,28 +867,23 @@ export default function PDFEditorPage() {
                                     height: (ann.type === 'image' || ann.type === 'whiteout' || ann.type === 'highlight') ? ann.height : 'auto',
                                     position: 'absolute',
                                     pointerEvents: activeTool === 'select' ? 'auto' : 'none',
-                                    zIndex: selectedAnnotationId === ann.id ? 100 : (ann.type === 'text' ? 20 : 10)
+                                    zIndex: selectedAnnotationId === ann.id ? 100 : (ann.type === 'text' ? 20 : 10),
+                                    outline: selectedAnnotationId === ann.id ? '2px solid #6366f1' : 'none',
+                                    outlineOffset: '1px',
                                   }}
-                                  className={`group cursor-move absolute ${ann.type === 'whiteout' ? '' : 'p-2'} border-2 ${selectedAnnotationId === ann.id ? 'border-indigo-500 bg-indigo-50/80 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]' : 'border-transparent ' + (ann.type === 'whiteout' ? 'hover:border-indigo-300/50 hover:border-dashed' : 'hover:border-gray-300')} transition-all`}
+                                  className={`group cursor-move absolute transition-all`}
                                   onClick={(e) => {
                                     e.stopPropagation();
                                     setSelectedAnnotationId(ann.id);
                                   }}
                                 >
                                     {ann.type === 'image' ? (
-                                      <div 
-                                        className="w-full h-full relative group overflow-hidden"
-                                        style={{ 
-                                          border: selectedAnnotationId === ann.id ? '2px solid black' : 'none'
-                                        }}
-                                      >
+                                      <div className="w-full h-full relative group overflow-hidden">
                                         <img 
                                           src={ann.imageBytes ? URL.createObjectURL(new Blob([ann.imageBytes as any])) : ''} 
-                                          className="w-full h-full object-contain pointer-events-none"
+                                          className="w-full h-full object-fill pointer-events-none" 
+                                          style={{ display: 'block' }}
                                           alt="Annotation"
-                                          onLoad={(e) => {
-                                            // Optional: Revoke URL after load if needed, but since it's a blob it's fine for now
-                                          }}
                                         />
                                         {selectedAnnotationId === ann.id && (
                                           <div 
@@ -926,7 +922,6 @@ export default function PDFEditorPage() {
                                           width: '100%', 
                                           height: '100%', 
                                           backgroundColor: ann.type === 'highlight' ? `rgba(${ann.color.r},${ann.color.g},${ann.color.b},${ann.opacity || 0.4})` : 'white',
-                                          border: selectedAnnotationId === ann.id ? '2px solid black' : 'none'
                                         }}
                                         className="relative group transition-all"
                                       >
@@ -1105,6 +1100,7 @@ export default function PDFEditorPage() {
                         </div>
                       </div>
                     )}
+                    </div>
                   </div>
                 </div>
               ) : (
